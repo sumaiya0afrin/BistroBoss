@@ -28,9 +28,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <a>
+        <NavLink
+          to="/shop"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
           Our Shop <img src={cart} alt="" className="w-6" />
-        </a>
+        </NavLink>
       </li>
       <li>
         <Button variant="link" className="uppercase text-white">
