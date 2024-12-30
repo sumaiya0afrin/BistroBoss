@@ -1,0 +1,13 @@
+.carousel {
+  justify-content: center;
+}
+
+.carousel-status {
+  display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .carousel .thumbs {
+    display: none;
+  }
+}
