@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import cart from "../assets/icon/cart.png";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <a>Home</a>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
         <a>Contact us</a>
@@ -15,7 +20,12 @@ const Navbar = () => {
         <a>Dashboard</a>
       </li>
       <li>
-        <a>Our Menu</a>
+        <NavLink
+          to="/menu"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          Our Menu
+        </NavLink>
       </li>
       <li>
         <a>
