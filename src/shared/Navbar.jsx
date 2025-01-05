@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import cart from "../assets/icon/cart.png";
 
 const Navbar = () => {
@@ -37,12 +37,12 @@ const Navbar = () => {
       </li>
       <li>
         <Button variant="link" className="uppercase text-white">
-          Register
+          <NavLink to="/register">Register</NavLink>
         </Button>
       </li>
       <li>
         <Button asChild>
-          <Link href="/login">Login</Link>
+          <NavLink to="/login">Login</NavLink>
         </Button>
       </li>
     </>
