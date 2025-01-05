@@ -7,7 +7,7 @@ import { RiGoogleLine } from "react-icons/ri";
 import { VscGithub } from "react-icons/vsc";
 import { Helmet } from "react-helmet-async";
 
-const Register = () => {
+const Login = () => {
   const {
     register,
     formState: { errors },
@@ -17,7 +17,7 @@ const Register = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Register</title>
+        <title>Bistro Boss | Login</title>
       </Helmet>
       <div
         className="hero  min-h-screen"
@@ -40,27 +40,9 @@ const Register = () => {
         >
           <div className="w-full">
             <h1 className="text-2xl md:text-4xl font-bold text-center">
-              Sign Up
+              Login
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="p-3 rounded-lg border border-[#D0D0D0] text-sm placeholder:text-sm"
-                  {...register("name", { required: true })}
-                  aria-invalid={errors.name ? "true" : "false"}
-                />
-                {errors.name?.type === "required" && (
-                  <p role="alert" className="text-xs text-red-500">
-                    Name is required
-                  </p>
-                )}
-              </div>
-
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -108,21 +90,18 @@ const Register = () => {
               <input
                 type="submit"
                 className="btn bg-[#D1A054] text-white my-4 hover:border-[#D1A054] hover:bg-transparent hover:text-[#D1A054]"
-                value="Sign Up"
+                value="Sign In"
               />
             </form>
 
             <div className="text-center space-y-3">
               <p className="text-sm md:text-base text-[#D1A054]">
-                Already registered?{" "}
-                <span className="font-semibold">
-                  Go to{" "}
-                  <Link to="/login" className="hover:underline">
-                    log in
-                  </Link>
-                </span>
+                New Here?{" "}
+                <Link to="/register" className="hover:underline font-semibold">
+                  Create a New Account
+                </Link>
               </p>
-              <p>Or sign up with</p>
+              <p>Or sign in with</p>
 
               <div className="flex items-center gap-4 text-3xl justify-center">
                 <button>
@@ -144,4 +123,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
