@@ -29,7 +29,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/shop"
+          to="/shop/salad"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
           Our Shop <img src={cart} alt="" className="w-6" />

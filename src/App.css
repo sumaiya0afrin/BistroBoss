@@ -6,6 +6,12 @@
   display: none;
 }
 
+.react-tabs__tab--selected {
+  border: none !important;
+  border-bottom: 2px solid #bb8506 !important;
+  color: #bb8506 !important;
+}
+
 @media only screen and (max-width: 480px) {
   .carousel .thumbs {
     display: none;
