@@ -14,7 +14,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <a>Contact us</a>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          Contact Us
+        </NavLink>
       </li>
       <li>
         <a>Dashboard</a>
