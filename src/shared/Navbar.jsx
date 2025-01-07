@@ -5,9 +5,11 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { RiShoppingCart2Fill } from "react-icons/ri";
+import useCart from "../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -56,7 +58,7 @@ const Navbar = () => {
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
           <RiShoppingCart2Fill className="text-3xl text-green-600" />
-          <Badge className="-mt-4 -ml-2">0</Badge>
+          <Badge className="-mt-4 -ml-2">{cart.length}</Badge>
         </NavLink>
       </li>
       {user ? (
