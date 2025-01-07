@@ -34,7 +34,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <a>Dashboard</a>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          Dashboard
+        </NavLink>
       </li>
       <li>
         <NavLink
@@ -54,7 +59,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/"
+          to="/dashboard/cart"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
           <RiShoppingCart2Fill className="text-3xl text-green-600" />

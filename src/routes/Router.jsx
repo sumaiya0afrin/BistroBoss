@@ -7,6 +7,9 @@ import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 
 import ContactUs from "../pages/contact/ContactUs";
+import DashBoard from "../dashboard/DashBoard";
+import Cart from "../pages/dashboard/cart/Cart";
+import Error from "../pages/error/Error";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +40,20 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard />,
+    children: [
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 
