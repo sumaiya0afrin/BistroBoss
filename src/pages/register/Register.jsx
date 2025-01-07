@@ -6,14 +6,64 @@ import { CiFacebook } from "react-icons/ci";
 import { RiGoogleLine } from "react-icons/ri";
 import { VscGithub } from "react-icons/vsc";
 import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser, userProfile } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const { name, mail, password } = data;
+
+    console.log(name, mail, password);
+
+    createUser(mail, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        userProfile(name)
+          .then(() => {
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "User Created Successfully",
+              timer: 2000,
+              showConfirmButton: false,
+              width: "20rem",
+              customClass: {
+                title: "text-lg",
+                icon: "text-xs",
+              },
+              showClass: {
+                popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `,
+              },
+              hideClass: {
+                popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `,
+              },
+            });
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
   return (
     <div>
       <Helmet>

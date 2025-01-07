@@ -1,8 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
-import cart from "../assets/icon/cart.png";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { RiShoppingCart2Fill } from "react-icons/ri";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   const links = (
     <>
       <li>
@@ -37,21 +47,51 @@ const Navbar = () => {
           to="/shop/salad"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
-          Our Shop <img src={cart} alt="" className="w-6" />
+          Our Shop
         </NavLink>
       </li>
       <li>
-        <Button variant="link" className="uppercase text-white">
-          <NavLink to="/register">Register</NavLink>
-        </Button>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          <RiShoppingCart2Fill className="text-3xl text-green-600" />
+          <Badge className="-mt-4 -ml-2">0</Badge>
+        </NavLink>
       </li>
-      <li>
-        <Button asChild>
-          <NavLink to="/login">Login</NavLink>
-        </Button>
-      </li>
+      {user ? (
+        <>
+          <div
+            className="tooltip tooltip-bottom capitalize"
+            data-tip={user?.displayName}
+          >
+            <Avatar className="hidden lg:block mr-2">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </div>
+          <li>
+            <Button onClick={handleLogout}>Logout</Button>
+          </li>
+        </>
+      ) : (
+        <>
+          {" "}
+          <li>
+            <Button variant="link" className="uppercase text-white">
+              <NavLink to="/register">Register</NavLink>
+            </Button>
+          </li>
+          <li>
+            <Button asChild>
+              <NavLink to="/login">Login</NavLink>
+            </Button>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
     <>
       <div className="navbar fixed z-10 bg-opacity-30 bg-black max-w-screen-2xl mx-auto text-white md:px-10">
@@ -86,7 +126,9 @@ const Navbar = () => {
           </a>
         </div>
         <div className="flex-none hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 uppercase">{links}</ul>
+          <ul className="menu menu-horizontal px-1 uppercase items-center">
+            {links}
+          </ul>
         </div>
       </div>
     </>
