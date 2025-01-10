@@ -5,6 +5,11 @@
 .carousel-status {
   display: none;
 }
+.react-time-picker__wrapper {
+  padding: 4px;
+  border-radius: 6px;
+  border-color: #e8e8e8 !important;
+}
 
 .react-tabs__tab--selected {
   border: none !important;

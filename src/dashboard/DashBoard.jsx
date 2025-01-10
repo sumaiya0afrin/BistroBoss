@@ -36,7 +36,7 @@ const DashBoard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/reservation">
+              <NavLink to="/dashboard/payment">
                 <IoWalletSharp className="text-lg" />
                 payment history
               </NavLink>
@@ -74,7 +74,7 @@ const DashBoard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/menu">
+              <NavLink to="/shop/salad">
                 <MdShoppingBag className="text-lg" />
                 Shop
               </NavLink>
