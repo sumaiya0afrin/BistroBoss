@@ -5,7 +5,7 @@ import Menu from "../pages/menu/Menu";
 import Shop from "../pages/shop/Shop";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
-
+import PrivateRoute from "../routes/PrivateRoute";
 import ContactUs from "../pages/contact/ContactUs";
 import DashBoard from "../dashboard/DashBoard";
 import Cart from "../pages/dashboard/cart/Cart";
@@ -13,6 +13,9 @@ import Error from "../pages/error/Error";
 import UserHome from "../pages/dashboard/userHome/UserHome";
 import Reservation from "../pages/dashboard/reservation/Reservation";
 import MyBooking from "../pages/dashboard/myBooking/MyBooking";
+import AddReview from "../pages/dashboard/addReview/AddReview";
+import AllUser from "../pages/adminDashboard/allUsers/AllUser";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +49,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashBoard />,
+    element: (
+      <PrivateRoute>
+        <DashBoard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "cart",
@@ -63,6 +70,20 @@ const router = createBrowserRouter([
       {
         path: "myBooking",
         element: <MyBooking />,
+      },
+      {
+        path: "addReview",
+        element: <AddReview />,
+      },
+
+      // admin routes
+      {
+        path: "all-user",
+        element: (
+          <AdminRoute>
+            <AllUser />
+          </AdminRoute>
+        ),
       },
     ],
   },

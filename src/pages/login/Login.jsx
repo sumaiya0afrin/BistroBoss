@@ -3,7 +3,6 @@ import background from "../../assets/others/authentication.png";
 import registerImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { CiFacebook } from "react-icons/ci";
-import { RiGoogleLine } from "react-icons/ri";
 import { VscGithub } from "react-icons/vsc";
 import { Helmet } from "react-helmet-async";
 import {
@@ -14,6 +13,7 @@ import {
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../shared/SocialLogin";
 
 const Login = () => {
   const { signIn, setUser } = useContext(AuthContext);
@@ -196,9 +196,7 @@ const Login = () => {
                 <button>
                   <CiFacebook />
                 </button>
-                <button>
-                  <RiGoogleLine />
-                </button>
+                <SocialLogin />
                 <button>
                   <VscGithub />
                 </button>

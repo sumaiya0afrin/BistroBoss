@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import background from "../../assets/others/authentication.png";
 import registerImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { CiFacebook } from "react-icons/ci";
-import { RiGoogleLine } from "react-icons/ri";
 import { VscGithub } from "react-icons/vsc";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../shared/SocialLogin";
 
 const Register = () => {
   const { createUser, userProfile } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -29,32 +34,41 @@ const Register = () => {
         console.log(user);
         userProfile(name)
           .then(() => {
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User Created Successfully",
-              timer: 2000,
-              showConfirmButton: false,
-              width: "20rem",
-              customClass: {
-                title: "text-lg",
-                icon: "text-xs",
-              },
-              showClass: {
-                popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `,
-              },
-              hideClass: {
-                popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `,
-              },
+            const userInfo = {
+              name: name,
+              email: mail,
+            };
+            axiosPublic.post("/user", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User Created Successfully",
+                  timer: 2000,
+                  showConfirmButton: false,
+                  width: "20rem",
+                  customClass: {
+                    title: "text-lg",
+                    icon: "text-xs",
+                  },
+                  showClass: {
+                    popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                          `,
+                  },
+                  hideClass: {
+                    popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                          `,
+                  },
+                });
+              }
+              navigate(location?.state ? location.state : "/");
             });
           })
           .catch((err) => console.log(err));
@@ -178,9 +192,8 @@ const Register = () => {
                 <button>
                   <CiFacebook />
                 </button>
-                <button>
-                  <RiGoogleLine />
-                </button>
+                <SocialLogin />
+
                 <button>
                   <VscGithub />
                 </button>

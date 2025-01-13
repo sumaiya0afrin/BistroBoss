@@ -73,7 +73,7 @@ const Navbar = () => {
             data-tip={user?.displayName}
           >
             <Avatar className="hidden lg:block mr-2">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage src={user.photoURL} alt={user.displayName} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>

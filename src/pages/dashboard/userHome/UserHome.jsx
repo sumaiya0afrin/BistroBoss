@@ -44,6 +44,10 @@ const UserHome = () => {
           }}
         />
       </div>
+
+      <div>
+        <img src="" alt="" />
+      </div>
     </div>
   );
 };
